@@ -3,7 +3,7 @@ using System.Xml.Serialization;
 //using System.Runtime.Serialization;
 using UnityEngine;
 
-namespace Data
+namespace Joserbala.Data
 {
 
     [Serializable]

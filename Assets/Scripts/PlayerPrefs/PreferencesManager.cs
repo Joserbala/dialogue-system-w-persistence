@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Serialization
+namespace Joserbala.Serialization
 {
     public class PreferencesManager : MonoBehaviour
     {

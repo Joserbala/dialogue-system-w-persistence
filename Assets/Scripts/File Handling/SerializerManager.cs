@@ -6,7 +6,7 @@ using Data;
 using UnityEngine;
 using Utils;
 
-namespace Serialization
+namespace Joserbala.Serialization
 {
     public class SerializerManager : Singleton<SerializerManager>
     {

@@ -1,121 +1,142 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.IO;
 using UnityEngine;
-using Utils;
+using Joserbala.Utils;
 
-public class FileManager : Singleton<FileManager>
+namespace Joserbala.Serialization
 {
-    public string Key;
-    public string Password;
-
-    public string SavePath = "C:\\Users\\joseg\\UnityTest";
-
-    // private static FileManager instance;
-
-    // public static FileManager Instance { get => instance; }
-
-    // private void Awake()
-    // {
-    //     if (instance == null)
-    //     {
-    //         instance = this;
-    //     }
-    // }
-
-    private void Start()
+    public class FileManager : Singleton<FileManager>
     {
-        // CreateKey(Key, Password);
-        // Debug.Log(ReadKey(Key));
 
-        // Write(Key, Password);
-        // SlowReading(Key);
-    }
+        public string Key;
+        public string Password;
 
-    #region File
+        public string DesktopPath { get; private set; }
+        public string DocumentsPath { get; private set; }
+        public string FilesPath { get; private set; }
 
-    // public void Write(string pathFile, string text) // TODO: buscar crear esta clase más general, con un KeyManager
-    // {
+        private readonly string savePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "JOSERAIGAME");
 
-    // }
+        // private static FileManager instance;
 
-    // public string Read(string pathFile)
-    // {
-    //     return string.Empty;
-    // }
+        // public static FileManager Instance { get => instance; }
 
-    public void CreateKey(string keyID, string keyPassword)
-    {
-        string file = GenerateFilePath(keyID);
+        // private void Awake()
+        // {
+        //     if (instance == null)
+        //     {
+        //         instance = this;
+        //     }
+        // }
 
-        if (!File.Exists(file))
+        private void Awake()
         {
-            File.WriteAllText(file, Key + ":" + keyPassword);
-        }
-    }
+            DesktopPath = Path.Combine(savePath, "Desktop");
+            DocumentsPath = Path.Combine(savePath, "Documents");
+            FilesPath = Path.Combine(savePath, "ArtificialIntelligenceFiles");
 
-    public string ReadKey(string keyID)
-    {
-        string file = GenerateFilePath(keyID);
-        string content = string.Empty;
-
-        if (File.Exists(file))
-        {
-            content = File.ReadAllText(file);
+            if (!Directory.Exists(savePath))
+            {
+                Directory.CreateDirectory(savePath);
+            }
         }
 
-        return content;
-    }
-
-    public string ReadFirstLine(string keyID)
-    {
-        string file = GenerateFilePath(keyID);
-        string[] content;
-        string line = string.Empty;
-
-        if (File.Exists(file))
+        private void Start()
         {
-            content = File.ReadAllLines(file);
-            line = (content.Length > 0 ? content[0] : string.Empty);
+            // CreateKey(Key, Password);
+            // Debug.Log(ReadKey(Key));
+
+            // Write(Key, Password);
+            // SlowReading(Key);
         }
 
-        return line;
-    }
+        #region File
 
-    #endregion
+        // public void Write(string pathFile, string text) // TODO: buscar crear esta clase más general, con un KeyManager
+        // {
 
-    #region Stream
+        // }
 
-    public void Write(string file, string text)
-    {
-        using (var writer = new StreamWriter(GenerateFilePath(file), true)) // using se encarga de hacer uso de Dispose, liberar memoria si ocurre una excepción
+        // public string Read(string pathFile)
+        // {
+        //     return string.Empty;
+        // }
+
+        public void CreateKey(string keyID, string keyPassword)
         {
-            writer.WriteLine(text);
+            string file = GenerateFilePath(keyID);
 
-            writer.Close();
+            if (!File.Exists(file))
+            {
+                File.WriteAllText(file, Key + ":" + keyPassword);
+            }
         }
-    }
 
-    public void SlowReading(string fileName)
-    {
-        StartCoroutine(ReadFileSlowCoroutine(GenerateFilePath(fileName), 1f));
-    }
-
-    IEnumerator ReadFileSlowCoroutine(string filePath, float delay)
-    {
-        var reader = new StreamReader(filePath);
-        string line;
-
-        while ((line = reader.ReadLine()) != null)
+        public string ReadKey(string keyID)
         {
-            Debug.Log(line);
-            yield return new WaitForSeconds(delay);
+            string file = GenerateFilePath(keyID);
+            string content = string.Empty;
+
+            if (File.Exists(file))
+            {
+                content = File.ReadAllText(file);
+            }
+
+            return content;
         }
-    }
 
-    #endregion
+        public string ReadFirstLine(string keyID)
+        {
+            string file = GenerateFilePath(keyID);
+            string[] content;
+            string line = string.Empty;
 
-    public string GenerateFilePath(string name)
-    {
-        return SavePath + "\\" + name + ".txt";
+            if (File.Exists(file))
+            {
+                content = File.ReadAllLines(file);
+                line = (content.Length > 0 ? content[0] : string.Empty);
+            }
+
+            return line;
+        }
+
+        #endregion
+
+        #region Stream
+
+        public void Write(string file, string text)
+        {
+            using (var writer = new StreamWriter(GenerateFilePath(file), true)) // using se encarga de hacer uso de Dispose, liberar memoria si ocurre una excepción
+            {
+                writer.WriteLine(text);
+
+                writer.Close();
+            }
+        }
+
+        public void SlowReading(string fileName)
+        {
+            StartCoroutine(ReadFileSlowCoroutine(GenerateFilePath(fileName), 1f));
+        }
+
+        IEnumerator ReadFileSlowCoroutine(string filePath, float delay)
+        {
+            var reader = new StreamReader(filePath);
+            string line;
+
+            while ((line = reader.ReadLine()) != null)
+            {
+                Debug.Log(line);
+                yield return new WaitForSeconds(delay);
+            }
+        }
+
+        #endregion
+
+        public string GenerateFilePath(string name)
+        {
+            return Path.Combine(savePath, name + ".txt");
+        }
     }
 }

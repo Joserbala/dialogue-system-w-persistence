@@ -1,4 +1,4 @@
-﻿namespace Data
+﻿namespace Joserbala.Data
 {
 
     [System.Serializable]

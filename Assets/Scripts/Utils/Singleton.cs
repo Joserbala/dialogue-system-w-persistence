@@ -1,24 +1,23 @@
 ﻿using UnityEngine;
 
-namespace Utils
+namespace Joserbala.Utils
 {
     public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
     {
 
-        private static T instance;
-
-        protected static T Instance
+        public static T Instance
         {
             get
             {
-                if (instance == null)
+                if (Instance == null)
                 {
-                    instance = (T)FindObjectOfType(typeof(T));
+                    Instance = (T)FindObjectOfType(typeof(T));
                 }
 
-                return instance;
+                return Instance;
             }
+
+            private set => Instance = value;
         }
     }
-
 }
