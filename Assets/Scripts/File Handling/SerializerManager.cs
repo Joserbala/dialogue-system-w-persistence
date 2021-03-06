@@ -2,9 +2,9 @@
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Xml;
 using System.Xml.Serialization;
-using Data;
+using Joserbala.Data;
 using UnityEngine;
-using Utils;
+using Joserbala.Utils;
 
 namespace Joserbala.Serialization
 {

@@ -16,6 +16,9 @@ namespace Joserbala.Serialization
         public string DocumentsPath { get; private set; }
         public string FilesPath { get; private set; }
 
+        private const string LOREM_IPSUM = "LoremIpsum";
+        private const string TXT_EXTENSION = ".txt";
+        private readonly char directorySeparator = Path.AltDirectorySeparatorChar;
         private readonly string savePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "JOSERAIGAME");
 
         // private static FileManager instance;
@@ -38,7 +41,41 @@ namespace Joserbala.Serialization
 
             if (!Directory.Exists(savePath))
             {
-                Directory.CreateDirectory(savePath);
+                CreateDirectories();
+            }
+            Debug.Log(Application.streamingAssetsPath);
+
+            CreateRandomFiles(5, DesktopPath);
+            IEnumerable files = Directory.EnumerateFiles(FilesPath);
+
+            int counter = 0;
+            foreach (var item in files)
+            {
+                counter++;
+            }
+            Debug.Log(counter);
+        }
+
+        private void CreateDirectories()
+        {
+            Directory.CreateDirectory(savePath);
+            Directory.CreateDirectory(DesktopPath);
+            Directory.CreateDirectory(DocumentsPath);
+            Directory.CreateDirectory(FilesPath);
+        }
+
+        private void CreateRandomFiles(int numberFiles, string path)
+        {
+            var loremIpsumPath = string.Empty;
+
+            for (int i = 0; i < numberFiles; i++)
+            {
+                loremIpsumPath = Path.Combine(Application.streamingAssetsPath, LOREM_IPSUM + UnityEngine.Random.Range(1, 6) + TXT_EXTENSION);
+                loremIpsumPath = Application.streamingAssetsPath + directorySeparator + LOREM_IPSUM + UnityEngine.Random.Range(1, 6) + TXT_EXTENSION;
+                Debug.Log(loremIpsumPath);
+
+                Debug.Log(Read(loremIpsumPath));
+                // Path.GetRandomFileName();
             }
         }
 
@@ -73,6 +110,19 @@ namespace Joserbala.Serialization
             }
         }
 
+        public string Read(string path)
+        {
+            string content = string.Empty;
+
+            if (File.Exists(path))
+            {
+                Debug.Log(path + " exists");
+                // content = File.ReadAllText(path);
+            }
+
+            return content;
+        }
+
         public string ReadKey(string keyID)
         {
             string file = GenerateFilePath(keyID);
@@ -95,7 +145,7 @@ namespace Joserbala.Serialization
             if (File.Exists(file))
             {
                 content = File.ReadAllLines(file);
-                line = (content.Length > 0 ? content[0] : string.Empty);
+                line = content.Length > 0 ? content[0] : string.Empty;
             }
 
             return line;
