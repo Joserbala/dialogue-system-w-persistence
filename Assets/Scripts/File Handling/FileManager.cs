@@ -15,12 +15,12 @@ namespace Joserbala.Serialization
 
         [SerializeField] private int randomFilesNumber = 100;
 
-        public string DesktopPath { get; private set; }
-        public string DocumentsPath { get; private set; }
-        public string FilesPath { get; private set; }
-        public string SavePath { get; private set; }
+        public static string DesktopPath { get; private set; }
+        public static string DocumentsPath { get; private set; }
+        public static string FilesPath { get; private set; }
+        public static string SavePath { get; private set; }
 
-        private const string LOREM_IPSUM_DIRECTORY = "LoremIpsums";
+        private const string LOREM_IPSUMS_DIRECTORY = "LoremIpsums";
         private const string LOREM_IPSUM_FILE = "LoremIpsum";
         private const string TXT_EXTENSION = ".txt";
 
@@ -57,7 +57,7 @@ namespace Joserbala.Serialization
                 counter++;
             }
 
-            SerializerManager.Instance.NavigateXML2(DialogueDatabase.Load("Dialogue1.xml"), "eng");
+            DialogueXMLNavigator.GetContents(DialogueDatabase.Load("Dialogue1.xml"));
         }
 
         /// <summary>
@@ -83,10 +83,11 @@ namespace Joserbala.Serialization
 
             for (int i = 0; i < filesNumber; i++)
             {
-                loremIpsumPath = Path.Combine(Application.streamingAssetsPath, LOREM_IPSUM_DIRECTORY, LOREM_IPSUM_FILE + UnityEngine.Random.Range(1, 6) + TXT_EXTENSION);
+                loremIpsumPath = Path.Combine(Application.streamingAssetsPath, LOREM_IPSUMS_DIRECTORY, LOREM_IPSUM_FILE + UnityEngine.Random.Range(1, 6) + TXT_EXTENSION);
 
                 loremIpsumContent = Read(loremIpsumPath);
 
+                // Fill the files with Lorem Ipsum dummy text
                 SerializerManager.Instance.WriteBinary(Path.Combine(path, Path.GetRandomFileName()), loremIpsumContent);
             }
         }
