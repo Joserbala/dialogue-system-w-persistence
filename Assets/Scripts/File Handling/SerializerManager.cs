@@ -159,5 +159,30 @@ namespace Joserbala.Serialization
                 Debug.Log(name + " : " + value + " - " + attr + "[" + text + "]");
             }
         }
+
+        public string[] NavigateXML2(XmlDocument document, string language)
+        {
+            XmlNodeList dialogueNodes = document.GetElementsByTagName("fragment");
+            string[] contents = new string[dialogueNodes.Count];
+
+            if (dialogueNodes != null)
+            {
+                foreach (XmlNode node in dialogueNodes)
+                {
+                    int i = 0;
+                    foreach (XmlNode childNode in node)
+                    {
+                        if (childNode.Attributes["lang"]?.InnerText == language)
+                        {
+                            contents[i] = childNode.InnerText;
+                            Debug.Log(contents[i]);
+                        }
+                        i++;
+                    }
+                }
+            }
+
+            return contents;
+        }
     }
 }

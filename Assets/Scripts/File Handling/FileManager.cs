@@ -3,6 +3,7 @@ using System.Collections;
 using System.IO;
 using UnityEngine;
 using Joserbala.Utils;
+using Joserbala.DialogueSystem;
 
 namespace Joserbala.Serialization
 {
@@ -12,13 +13,16 @@ namespace Joserbala.Serialization
         public string Key;
         public string Password;
 
+        [SerializeField] private int randomFilesNumber = 100;
+
         public string DesktopPath { get; private set; }
         public string DocumentsPath { get; private set; }
         public string FilesPath { get; private set; }
+        public string SavePath { get; private set; }
 
-        private const string LOREM_IPSUM = "LoremIpsum";
+        private const string LOREM_IPSUM_DIRECTORY = "LoremIpsums";
+        private const string LOREM_IPSUM_FILE = "LoremIpsum";
         private const string TXT_EXTENSION = ".txt";
-        private readonly string savePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "JOSERAIGAME");
 
         // private static FileManager instance;
 
@@ -34,14 +38,15 @@ namespace Joserbala.Serialization
 
         private void Awake()
         {
-            DesktopPath = Path.Combine(savePath, "Desktop");
-            DocumentsPath = Path.Combine(savePath, "Documents");
-            FilesPath = Path.Combine(savePath, "ArtificialIntelligenceFiles");
+            SavePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "JOSERAIGAME");
+            DesktopPath = Path.Combine(SavePath, "Desktop");
+            DocumentsPath = Path.Combine(SavePath, "Documents");
+            FilesPath = Path.Combine(SavePath, "ArtificialIntelligenceFiles");
 
-            if (!Directory.Exists(savePath))
+            if (!Directory.Exists(SavePath))
             {
                 CreateDirectories();
-                CreateRandomFiles(100, DesktopPath);
+                CreateRandomFiles(randomFilesNumber, FilesPath);
             }
 
             IEnumerable files = Directory.EnumerateFiles(FilesPath);
@@ -51,6 +56,8 @@ namespace Joserbala.Serialization
             {
                 counter++;
             }
+
+            SerializerManager.Instance.NavigateXML2(DialogueDatabase.Load("Dialogue1.xml"), "eng");
         }
 
         /// <summary>
@@ -58,25 +65,25 @@ namespace Joserbala.Serialization
         /// </summary>
         private void CreateDirectories()
         {
-            Directory.CreateDirectory(savePath);
+            Directory.CreateDirectory(SavePath);
             Directory.CreateDirectory(DesktopPath);
             Directory.CreateDirectory(DocumentsPath);
             Directory.CreateDirectory(FilesPath);
         }
 
         /// <summary>
-        /// Creates <paramref name="numberFiles"/> files in <paramref name="path"/>.
+        /// Creates <paramref name="filesNumber"/> files in <paramref name="path"/>.
         /// </summary>
-        /// <param name="numberFiles">The number of files to be created.</param>
-        /// <param name="path">The path where <paramref name="numberFiles"/> files will be created.</param>
-        private void CreateRandomFiles(int numberFiles, string path)
+        /// <param name="filesNumber">The number of files to be created.</param>
+        /// <param name="path">The path where <paramref name="filesNumber"/> files will be created.</param>
+        private void CreateRandomFiles(int filesNumber, string path)
         {
             string loremIpsumPath;
             string loremIpsumContent;
 
-            for (int i = 0; i < numberFiles; i++)
+            for (int i = 0; i < filesNumber; i++)
             {
-                loremIpsumPath = Path.Combine(Application.streamingAssetsPath, LOREM_IPSUM + UnityEngine.Random.Range(1, 6) + TXT_EXTENSION);
+                loremIpsumPath = Path.Combine(Application.streamingAssetsPath, LOREM_IPSUM_DIRECTORY, LOREM_IPSUM_FILE + UnityEngine.Random.Range(1, 6) + TXT_EXTENSION);
 
                 loremIpsumContent = Read(loremIpsumPath);
 
@@ -94,26 +101,6 @@ namespace Joserbala.Serialization
         }
 
         #region File
-
-        // public void Write(string pathFile, string text) // TODO: buscar crear esta clase más general, con un KeyManager
-        // {
-
-        // }
-
-        // public string Read(string pathFile)
-        // {
-        //     return string.Empty;
-        // }
-
-        public void CreateKey(string keyID, string keyPassword)
-        {
-            string file = GenerateFilePath(keyID);
-
-            if (!File.Exists(file))
-            {
-                File.WriteAllText(file, Key + ":" + keyPassword);
-            }
-        }
 
         /// <summary>
         /// Returns the content of the file in <paramref name="path"/>.
@@ -182,7 +169,7 @@ namespace Joserbala.Serialization
 
         public string GenerateFilePath(string name)
         {
-            return Path.Combine(savePath, name + ".txt");
+            return Path.Combine(SavePath, name + ".txt");
         }
     }
 }

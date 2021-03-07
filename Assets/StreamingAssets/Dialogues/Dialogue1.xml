@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dialogue>
+    <fragment number="1">
+        <content lang="eng">Hello!</content>
+    </fragment>
+    <fragment number="2">
+        <content lang="eng">My name is Joser.</content>
+    </fragment>
+    <fragment number="3">
+        <content lang="eng">Nice to meet you!</content>
+    </fragment>
+</dialogue>
