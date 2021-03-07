@@ -22,24 +22,22 @@ namespace Joserbala.Serialization
             // myPlayer = DeserializeJSON("PlayerData.json");
             // myPlayer.ShowInternalData();
 
-            NavigateXML("WeaponsData.xml");
+            // NavigateXML("WeaponsData.xml");
         }
 
         #region BINARY
 
-        public void SerializeBinary(PlayerData playerData)
+        /// <summary>
+        /// Writes <paramref name="content"/> into a file that will be stored in <paramref name="path"/>.
+        /// </summary>
+        /// <param name="path">The file where <paramref name="content"/> will be stored.</param>
+        /// <param name="content">The content that will be stored in <paramref name="path"/>.</param>
+        public void WriteBinary(string path, string content)
         {
-            // Abrir el archivo
-            var fs = new FileStream("PlayerDataBIN.dat", FileMode.Create);
-
-            // Declarar el serializador
-            var formatter = new BinaryFormatter();
-
-            // Serializar los datos en el fichero
-            formatter.Serialize(fs, playerData);
-
-            // Cerrar el archivo
-            fs.Close();
+            using (BinaryWriter writer = new BinaryWriter(File.Open(path, FileMode.Create)))
+            {
+                writer.Write(content);
+            }
         }
 
         public PlayerData DeserializeBinary(string file)

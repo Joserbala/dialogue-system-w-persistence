@@ -5,19 +5,19 @@ namespace Joserbala.Utils
     public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
     {
 
-        public static T Instance
+        private static T instance;
+
+        protected static T Instance
         {
             get
             {
-                if (Instance == null)
+                if (instance == null)
                 {
-                    Instance = (T)FindObjectOfType(typeof(T));
+                    instance = (T)FindObjectOfType(typeof(T));
                 }
 
-                return Instance;
+                return instance;
             }
-
-            private set => Instance = value;
         }
     }
 }

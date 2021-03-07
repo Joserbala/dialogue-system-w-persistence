@@ -18,7 +18,6 @@ namespace Joserbala.Serialization
 
         private const string LOREM_IPSUM = "LoremIpsum";
         private const string TXT_EXTENSION = ".txt";
-        private readonly char directorySeparator = Path.AltDirectorySeparatorChar;
         private readonly string savePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "JOSERAIGAME");
 
         // private static FileManager instance;
@@ -42,10 +41,9 @@ namespace Joserbala.Serialization
             if (!Directory.Exists(savePath))
             {
                 CreateDirectories();
+                CreateRandomFiles(100, DesktopPath);
             }
-            Debug.Log(Application.streamingAssetsPath);
 
-            CreateRandomFiles(5, DesktopPath);
             IEnumerable files = Directory.EnumerateFiles(FilesPath);
 
             int counter = 0;
@@ -53,9 +51,11 @@ namespace Joserbala.Serialization
             {
                 counter++;
             }
-            Debug.Log(counter);
         }
 
+        /// <summary>
+        /// Creates all the directories for the game.
+        /// </summary>
         private void CreateDirectories()
         {
             Directory.CreateDirectory(savePath);
@@ -64,18 +64,23 @@ namespace Joserbala.Serialization
             Directory.CreateDirectory(FilesPath);
         }
 
+        /// <summary>
+        /// Creates <paramref name="numberFiles"/> files in <paramref name="path"/>.
+        /// </summary>
+        /// <param name="numberFiles">The number of files to be created.</param>
+        /// <param name="path">The path where <paramref name="numberFiles"/> files will be created.</param>
         private void CreateRandomFiles(int numberFiles, string path)
         {
-            var loremIpsumPath = string.Empty;
+            string loremIpsumPath;
+            string loremIpsumContent;
 
             for (int i = 0; i < numberFiles; i++)
             {
                 loremIpsumPath = Path.Combine(Application.streamingAssetsPath, LOREM_IPSUM + UnityEngine.Random.Range(1, 6) + TXT_EXTENSION);
-                loremIpsumPath = Application.streamingAssetsPath + directorySeparator + LOREM_IPSUM + UnityEngine.Random.Range(1, 6) + TXT_EXTENSION;
-                Debug.Log(loremIpsumPath);
 
-                Debug.Log(Read(loremIpsumPath));
-                // Path.GetRandomFileName();
+                loremIpsumContent = Read(loremIpsumPath);
+
+                SerializerManager.Instance.WriteBinary(Path.Combine(path, Path.GetRandomFileName()), loremIpsumContent);
             }
         }
 
@@ -110,27 +115,18 @@ namespace Joserbala.Serialization
             }
         }
 
+        /// <summary>
+        /// Returns the content of the file in <paramref name="path"/>.
+        /// </summary>
+        /// <param name="path">The path where the file to be read is stored.</param>
+        /// <returns>The content of the file in <paramref name="path"/>.</returns>
         public string Read(string path)
         {
             string content = string.Empty;
 
             if (File.Exists(path))
             {
-                Debug.Log(path + " exists");
-                // content = File.ReadAllText(path);
-            }
-
-            return content;
-        }
-
-        public string ReadKey(string keyID)
-        {
-            string file = GenerateFilePath(keyID);
-            string content = string.Empty;
-
-            if (File.Exists(file))
-            {
-                content = File.ReadAllText(file);
+                content = File.ReadAllText(path);
             }
 
             return content;
