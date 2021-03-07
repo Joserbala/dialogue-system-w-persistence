@@ -382,11 +382,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeStatic: 5
   timeToFade: 3
-  welcomePrompt: 'This game makes use of your MyDocuments folder.
+  welcomePrompt: 'This game creates a folder in your MyDocuments folder.
 
 
-    You can find
-    this folder at '
+    You
+    can find this folder at'
   initialText: {fileID: 627071424}
   startGame:
     m_PersistentCalls:

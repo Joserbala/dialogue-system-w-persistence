@@ -12,7 +12,8 @@ namespace Joserbala.UI
         [SerializeField] private float timeStatic;
         [SerializeField] private float timeToFade;
         [TextArea(3, 10)]
-        [SerializeField] private string welcomePrompt = "This game makes use of your MyDocuments folder.\n\nYou can find this folder at ";
+        [Tooltip("Prompt to be displayed at the welcome, end it without spaces.")]
+        [SerializeField] private string welcomePrompt = "This game creates a folder in your MyDocuments folder.\n\nYou can find this folder at";
         [SerializeField] private TextMeshProUGUI initialText;
         [SerializeField] private UnityEvent startGame;
 
@@ -26,7 +27,7 @@ namespace Joserbala.UI
         private void Start()
         {
             StartCoroutine(StartFading());
-            initialText.text = welcomePrompt + FileManager.SavePath + ".";
+            initialText.text = welcomePrompt + " " + FileManager.SavePath + ".";
         }
 
         IEnumerator StartFading()

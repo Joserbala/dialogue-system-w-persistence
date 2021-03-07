@@ -11,7 +11,7 @@ namespace Joserbala.DialogueSystem
         /// <summary>
         /// Returns the dialogue <paramref name="dialogueName"/> stored in the StreamingAssets/<see cref="DIALOGUE_FOLDER"/> folder.
         /// </summary>
-        /// <param name="dialogueName">File to load (with extension).</param>
+        /// <param name="dialogueName">File to load (with extension!).</param>
         /// <returns>The XmlDocument stored at <paramref name="dialogueName"/>.</returns>
         public static XmlDocument Load(string dialogueName)
         {

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dialogue>
+    <fragment number="1">
+        <content lang="eng">Welcome user. You have been selected for a test.</content>
+    </fragment>
+    <fragment number="2">
+        <content lang="eng">Do not be afraid, this should be shorted out in about 10 minutes.</content>
+    </fragment>
+    <fragment number="3">
+        <content lang="eng">Let the count begin.</content>
+    </fragment>
+</dialogue>
