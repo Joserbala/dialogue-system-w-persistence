@@ -9,9 +9,6 @@ namespace Joserbala.Serialization
     public class FileManager : Singleton<FileManager>
     {
 
-        public string Key;
-        public string Password;
-
         [SerializeField] private int randomFilesNumber = 100;
 
         public static string ArchivePath { get; private set; }
@@ -23,18 +20,6 @@ namespace Joserbala.Serialization
         private const string LOREM_IPSUMS_DIRECTORY = "LoremIpsums";
         private const string LOREM_IPSUM_FILE = "LoremIpsum";
         private const string TXT_EXTENSION = ".txt";
-
-        // private static FileManager instance;
-
-        // public static FileManager Instance { get => instance; }
-
-        // private void Awake()
-        // {
-        //     if (instance == null)
-        //     {
-        //         instance = this;
-        //     }
-        // }
 
         private void Awake()
         {
@@ -109,7 +94,7 @@ namespace Joserbala.Serialization
 
         public void Write(string path, string text)
         {
-            using (var writer = new StreamWriter(path, false)) // using se encarga de hacer uso de Dispose, liberar memoria si ocurre una excepción
+            using (var writer = new StreamWriter(path, false))
             {
                 writer.WriteLine(text);
 

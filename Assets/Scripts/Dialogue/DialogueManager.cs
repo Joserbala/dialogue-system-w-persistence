@@ -41,7 +41,6 @@ namespace Joserbala.DialogueSystem
             if (sentences.Count < 2)
             {
                 EndDialogue();
-                // return;
             }
 
             string sentence = sentences.Dequeue();
