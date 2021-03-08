@@ -6,4 +6,7 @@
     <fragment number="2">
         <content lang="eng">Do not be afraid, I will guide you through all the process.</content>
     </fragment>
+    <fragment number="3">
+        <content lang="eng">Firstly, I want you to go to the Commands folder and modify the Start.json file to display a 1 instead of 0 in the value field.</content>
+    </fragment>
 </dialogue>

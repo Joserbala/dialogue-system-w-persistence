@@ -2,6 +2,7 @@
 using System.Xml;
 using UnityEngine;
 using Joserbala.Utils;
+using Joserbala.Data;
 
 namespace Joserbala.Serialization
 {
@@ -96,38 +97,39 @@ namespace Joserbala.Serialization
 
         #region JSON
 
-        // public void SerializeJSON(PlayerData playerData)
-        // {
-        //     // Abrir el archivo
-        //     var writer = new StreamWriter("PlayerData.json");
+        public void SerializeJSON(string path, DummyData data)
+        {
+            if (!File.Exists(path))
+            {
+                var writer = new StreamWriter(path);
 
-        //     // Serializar
-        //     string playerJSON = JsonUtility.ToJson(playerData);
+                string dataJSON = JsonUtility.ToJson(data);
 
-        //     // Serlizar los datos en el fichero
-        //     writer.Write(playerJSON);
+                writer.Write(dataJSON);
 
-        //     // Cerrar el archivo
-        //     writer.Close();
+                writer.Close();
 
-        //     Debug.Log(playerJSON);
-        // }
+                Debug.Log(dataJSON);
+            }
+        }
 
-        // public PlayerData DeserializeJSON(string file)
-        // {
-        //     // Abrir el archivo
-        //     var reader = new StreamReader(file);
+        public DummyData DeserializeJSON(string path)
+        {
+            DummyData jsonData = null;
 
-        //     // Deserializar el fichero
-        //     PlayerData playerData = JsonUtility.FromJson<PlayerData>(reader.ReadToEnd());
+            if (File.Exists(path))
+            {
+                var reader = new StreamReader(path);
 
-        //     // JsonUtility.FromJsonOverwrite(reader.ReadToEnd(), playerData);
+                jsonData = JsonUtility.FromJson<DummyData>(reader.ReadToEnd());
 
-        //     // Cerrar
-        //     reader.Close();
+                // JsonUtility.FromJsonOverwrite(reader.ReadToEnd(), playerData);
 
-        //     return playerData;
-        // }
+                reader.Close();
+            }
+
+            return jsonData;
+        }
 
         #endregion
 

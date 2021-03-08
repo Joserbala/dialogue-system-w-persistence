@@ -15,8 +15,9 @@ namespace Joserbala.Serialization
         [SerializeField] private int randomFilesNumber = 100;
 
         public static string ArchivePath { get; private set; }
-        public static string DocumentsPath { get; private set; }
-        public static string FilesPath { get; private set; }
+        public static string CommandsPath { get; private set; }
+        public static string DossiersPath { get; private set; }
+        public static string AIFilesPath { get; private set; }
         public static string SavePath { get; private set; }
 
         private const string LOREM_IPSUMS_DIRECTORY = "LoremIpsums";
@@ -39,21 +40,15 @@ namespace Joserbala.Serialization
         {
             SavePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "JOSERAIGAME");
             ArchivePath = Path.Combine(SavePath, "Archive");
-            DocumentsPath = Path.Combine(SavePath, "Documents");
-            FilesPath = Path.Combine(SavePath, "ArtificialIntelligenceFiles");
+            DossiersPath = Path.Combine(SavePath, "Dossiers");
+            CommandsPath = Path.Combine(SavePath, "Commands");
+            AIFilesPath = Path.Combine(SavePath, "ArtificialIntelligenceFiles");
 
             if (!Directory.Exists(SavePath))
             {
                 CreateDirectories();
-                CreateRandomFiles(randomFilesNumber, FilesPath);
+                CreateRandomFiles(randomFilesNumber, AIFilesPath);
             }
-
-            // IEnumerable files = Directory.EnumerateFiles(FilesPath); TODO remove all this block
-            // int counter = 0;
-            // foreach (var item in files)
-            // {
-            //     counter++;
-            // }
         }
 
         /// <summary>
@@ -63,8 +58,9 @@ namespace Joserbala.Serialization
         {
             Directory.CreateDirectory(SavePath);
             Directory.CreateDirectory(ArchivePath);
-            Directory.CreateDirectory(DocumentsPath);
-            Directory.CreateDirectory(FilesPath);
+            Directory.CreateDirectory(DossiersPath);
+            Directory.CreateDirectory(AIFilesPath);
+            Directory.CreateDirectory(CommandsPath);
         }
 
         /// <summary>
@@ -72,7 +68,7 @@ namespace Joserbala.Serialization
         /// </summary>
         /// <param name="filesNumber">The number of files to be created.</param>
         /// <param name="path">The path where <paramref name="filesNumber"/> files will be created.</param>
-        private void CreateRandomFiles(int filesNumber, string path)
+        public void CreateRandomFiles(int filesNumber, string path)
         {
             string loremIpsumPath;
             string loremIpsumContent;
@@ -107,28 +103,13 @@ namespace Joserbala.Serialization
             return content;
         }
 
-        public string ReadFirstLine(string keyID)
-        {
-            string file = GenerateFilePath(keyID);
-            string[] content;
-            string line = string.Empty;
-
-            if (File.Exists(file))
-            {
-                content = File.ReadAllLines(file);
-                line = content.Length > 0 ? content[0] : string.Empty;
-            }
-
-            return line;
-        }
-
         #endregion
 
         #region Stream
 
-        public void Write(string file, string text)
+        public void Write(string path, string text)
         {
-            using (var writer = new StreamWriter(GenerateFilePath(file), true)) // using se encarga de hacer uso de Dispose, liberar memoria si ocurre una excepción
+            using (var writer = new StreamWriter(path, false)) // using se encarga de hacer uso de Dispose, liberar memoria si ocurre una excepción
             {
                 writer.WriteLine(text);
 
@@ -136,28 +117,18 @@ namespace Joserbala.Serialization
             }
         }
 
-        public void SlowReading(string fileName)
-        {
-            StartCoroutine(ReadFileSlowCoroutine(GenerateFilePath(fileName), 1f));
-        }
-
-        IEnumerator ReadFileSlowCoroutine(string filePath, float delay)
-        {
-            var reader = new StreamReader(filePath);
-            string line;
-
-            while ((line = reader.ReadLine()) != null)
-            {
-                Debug.Log(line);
-                yield return new WaitForSeconds(delay);
-            }
-        }
-
         #endregion
 
-        public string GenerateFilePath(string name)
+        public int CountFilesInDirectory(string path)
         {
-            return Path.Combine(SavePath, name + ".txt");
+            IEnumerable files = Directory.EnumerateFiles(path);
+            int counter = 0;
+            foreach (var item in files)
+            {
+                counter++;
+            }
+
+            return counter;
         }
     }
 }

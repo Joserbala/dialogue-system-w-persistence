@@ -2,6 +2,7 @@
 using UnityEngine;
 using Joserbala.Utils;
 using TMPro;
+using UnityEngine.Events;
 
 namespace Joserbala.DialogueSystem
 {
@@ -9,6 +10,8 @@ namespace Joserbala.DialogueSystem
     {
 
         [SerializeField] private TextMeshProUGUI dialogueText;
+        [SerializeField] private UnityEvent whenDialogueStarts;
+        [SerializeField] private UnityEvent whenDialogueFinishes;
 
         private Queue<string> sentences;
 
@@ -20,6 +23,7 @@ namespace Joserbala.DialogueSystem
         public void StartDialogue(string[] fragments)
         {
             Debug.Log("Starting conversation");
+            whenDialogueStarts?.Invoke();
 
             sentences.Clear();
 
@@ -34,10 +38,10 @@ namespace Joserbala.DialogueSystem
 
         public void DisplayNextSequence()
         {
-            if (sentences.Count == 0)
+            if (sentences.Count < 2)
             {
                 EndDialogue();
-                return;
+                // return;
             }
 
             string sentence = sentences.Dequeue();
@@ -47,6 +51,7 @@ namespace Joserbala.DialogueSystem
         private void EndDialogue()
         {
             Debug.Log("End of conversation.");
+            whenDialogueFinishes?.Invoke();
         }
     }
 }
