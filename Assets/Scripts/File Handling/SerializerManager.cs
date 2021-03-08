@@ -1,17 +1,14 @@
 ﻿using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.Xml;
-using System.Xml.Serialization;
-using Joserbala.Data;
 using UnityEngine;
 using Joserbala.Utils;
 
 namespace Joserbala.Serialization
 {
-    public class SerializerManager : Singleton<SerializerManager>
+    public class SerializerManager : Singleton<SerializerManager> // TODO: remove unused methods
     {
 
-        public PlayerData myPlayer;
+        // public PlayerData myPlayer;
 
         private void Start()
         {
@@ -40,97 +37,97 @@ namespace Joserbala.Serialization
             }
         }
 
-        public PlayerData DeserializeBinary(string file)
-        {
-            // Abrir el archivo
-            var fs = new FileStream(file, FileMode.Open);
+        // public PlayerData DeserializeBinary(string file)
+        // {
+        //     // Abrir el archivo
+        //     var fs = new FileStream(file, FileMode.Open);
 
-            // Declarar el serializador
-            var formatter = new BinaryFormatter();
+        //     // Declarar el serializador
+        //     var formatter = new BinaryFormatter();
 
-            // Deserializar el fichero
-            PlayerData playerData = (PlayerData)formatter.Deserialize(fs);
+        //     // Deserializar el fichero
+        //     PlayerData playerData = (PlayerData)formatter.Deserialize(fs);
 
-            // Cerrar
-            fs.Close();
+        //     // Cerrar
+        //     fs.Close();
 
-            return playerData;
-        }
+        //     return playerData;
+        // }
 
         #endregion
 
         #region XML
 
-        public void SerializeXML(PlayerData playerData)
-        {
-            // Abrir el archivo
-            var writer = new StreamWriter("PlayerData.xml");
+        // public void SerializeXML(PlayerData playerData)
+        // {
+        //     // Abrir el archivo
+        //     var writer = new StreamWriter("PlayerData.xml");
 
-            // Declarar el serializador
-            var serializer = new XmlSerializer(typeof(PlayerData));
+        //     // Declarar el serializador
+        //     var serializer = new XmlSerializer(typeof(PlayerData));
 
-            // Serializar los datos en el fichero
-            serializer.Serialize(writer, playerData);
+        //     // Serializar los datos en el fichero
+        //     serializer.Serialize(writer, playerData);
 
-            // Cerrar el archivo
-            writer.Close();
-        }
+        //     // Cerrar el archivo
+        //     writer.Close();
+        // }
 
-        public PlayerData DeserializeXML(string file)
-        {
-            // Abrir el archivo
-            var fs = new FileStream(file, FileMode.Open);
+        // public PlayerData DeserializeXML(string file)
+        // {
+        //     // Abrir el archivo
+        //     var fs = new FileStream(file, FileMode.Open);
 
-            // Declarar el serializador
-            var serializer = new XmlSerializer(typeof(PlayerData));
+        //     // Declarar el serializador
+        //     var serializer = new XmlSerializer(typeof(PlayerData));
 
-            // Deserializar el fichero
-            PlayerData playerData = (PlayerData)serializer.Deserialize(fs);
+        //     // Deserializar el fichero
+        //     PlayerData playerData = (PlayerData)serializer.Deserialize(fs);
 
-            // Cerrar
-            fs.Close();
+        //     // Cerrar
+        //     fs.Close();
 
-            playerData.GenerateInternalData();
+        //     playerData.GenerateInternalData();
 
-            return playerData;
-        }
+        //     return playerData;
+        // }
 
         #endregion
 
         #region JSON
 
-        public void SerializeJSON(PlayerData playerData)
-        {
-            // Abrir el archivo
-            var writer = new StreamWriter("PlayerData.json");
+        // public void SerializeJSON(PlayerData playerData)
+        // {
+        //     // Abrir el archivo
+        //     var writer = new StreamWriter("PlayerData.json");
 
-            // Serializar
-            string playerJSON = JsonUtility.ToJson(playerData);
+        //     // Serializar
+        //     string playerJSON = JsonUtility.ToJson(playerData);
 
-            // Serlizar los datos en el fichero
-            writer.Write(playerJSON);
+        //     // Serlizar los datos en el fichero
+        //     writer.Write(playerJSON);
 
-            // Cerrar el archivo
-            writer.Close();
+        //     // Cerrar el archivo
+        //     writer.Close();
 
-            Debug.Log(playerJSON);
-        }
+        //     Debug.Log(playerJSON);
+        // }
 
-        public PlayerData DeserializeJSON(string file)
-        {
-            // Abrir el archivo
-            var reader = new StreamReader(file);
+        // public PlayerData DeserializeJSON(string file)
+        // {
+        //     // Abrir el archivo
+        //     var reader = new StreamReader(file);
 
-            // Deserializar el fichero
-            PlayerData playerData = JsonUtility.FromJson<PlayerData>(reader.ReadToEnd());
+        //     // Deserializar el fichero
+        //     PlayerData playerData = JsonUtility.FromJson<PlayerData>(reader.ReadToEnd());
 
-            // JsonUtility.FromJsonOverwrite(reader.ReadToEnd(), playerData);
+        //     // JsonUtility.FromJsonOverwrite(reader.ReadToEnd(), playerData);
 
-            // Cerrar
-            reader.Close();
+        //     // Cerrar
+        //     reader.Close();
 
-            return playerData;
-        }
+        //     return playerData;
+        // }
 
         #endregion
 

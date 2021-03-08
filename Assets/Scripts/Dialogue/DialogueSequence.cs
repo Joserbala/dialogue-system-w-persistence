@@ -13,10 +13,6 @@ namespace Joserbala.DialogueSystem
         public void DialogueStart()
         {
             string[] dialogue = ObtainNextDialogue();
-            foreach (var item in dialogue)
-            {
-                Debug.Log("Inside DialogueSequence: " + item);
-            }
             DialogueManager.Instance.StartDialogue(dialogue);
         }
 
