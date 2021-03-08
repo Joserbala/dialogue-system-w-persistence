@@ -49,15 +49,12 @@ namespace Joserbala.Serialization
                 CreateRandomFiles(randomFilesNumber, FilesPath);
             }
 
-            IEnumerable files = Directory.EnumerateFiles(FilesPath);
-
-            int counter = 0;
-            foreach (var item in files)
-            {
-                counter++;
-            }
-
-            DialogueXMLNavigator.GetContents(DialogueDatabase.Load("Dialogue1.xml"));
+            // IEnumerable files = Directory.EnumerateFiles(FilesPath); TODO remove all this block
+            // int counter = 0;
+            // foreach (var item in files)
+            // {
+            //     counter++;
+            // }
         }
 
         /// <summary>
@@ -72,7 +69,7 @@ namespace Joserbala.Serialization
         }
 
         /// <summary>
-        /// Creates <paramref name="filesNumber"/> files in <paramref name="path"/>.
+        /// Creates <paramref name="filesNumber"/> random binary files with Lorem Ipsum content at <paramref name="path"/>.
         /// </summary>
         /// <param name="filesNumber">The number of files to be created.</param>
         /// <param name="path">The path where <paramref name="filesNumber"/> files will be created.</param>
@@ -87,18 +84,9 @@ namespace Joserbala.Serialization
 
                 loremIpsumContent = Read(loremIpsumPath);
 
-                // Fill the files with Lorem Ipsum dummy text
+                // Create a file with Lorem Ipsum dummy text.
                 SerializerManager.Instance.WriteBinary(Path.Combine(path, Path.GetRandomFileName()), loremIpsumContent);
             }
-        }
-
-        private void Start()
-        {
-            // CreateKey(Key, Password);
-            // Debug.Log(ReadKey(Key));
-
-            // Write(Key, Password);
-            // SlowReading(Key);
         }
 
         #region File

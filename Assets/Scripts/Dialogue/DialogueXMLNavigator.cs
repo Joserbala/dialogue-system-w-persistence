@@ -1,9 +1,14 @@
-﻿using System.Xml;
+﻿using System.Collections.Generic;
+using System.Xml;
+using Joserbala.Utils;
 
 namespace Joserbala.DialogueSystem
 {
     public class DialogueXMLNavigator
     {
+
+        private const string FRAGMENT_TAG = "fragment";
+        private const string LANG_ATTRIBUTE = "lang";
 
         /// <summary>
         /// Returns the content nodes of <paramref name="document"/> with the Attribute <paramref name="language"/>.
@@ -13,25 +18,29 @@ namespace Joserbala.DialogueSystem
         /// <returns>The content nodes from <paramref name="document"/> with the Attribute <paramref name="language"/>.</returns>
         public static string[] GetContents(XmlDocument document, string language = "eng")
         {
-            XmlNodeList dialogueNodes = document.GetElementsByTagName("fragment");
-            string[] contents = new string[dialogueNodes.Count];
+            XmlNodeList fragmentNodes = document.GetElementsByTagName(FRAGMENT_TAG);
+            string[] contents = new string[fragmentNodes.Count];
 
-            if (dialogueNodes != null)
+            if (fragmentNodes != null)
             {
-                foreach (XmlNode node in dialogueNodes)
+                int i = 0;
+                // Iterate the fragment nodes.
+                foreach (XmlNode fragmentNode in fragmentNodes)
                 {
-                    int i = 0;
-                    foreach (XmlNode childNode in node)
+                    // Iterate the content nodes.
+                    foreach (XmlNode contentNode in fragmentNode)
                     {
-                        if (childNode.Attributes["lang"]?.InnerText == language)
+                        /// Obtain the content with <see cref="LANG_ATTRIBUTE"/> equal to <paramref name="language"/>.
+                        if (contentNode.Attributes[LANG_ATTRIBUTE]?.InnerText == language)
                         {
-                            contents[i] = childNode.InnerText;
-                            UnityEngine.Debug.Log(contents[i]);
+                            contents[i] = contentNode.InnerText;
+                            i++;
                         }
-                        i++;
                     }
                 }
             }
+
+            contents = StringUtils.TruncateNullOrEmptyValuesArray(contents);
 
             return contents;
         }

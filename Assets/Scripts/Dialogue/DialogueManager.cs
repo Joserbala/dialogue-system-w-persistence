@@ -25,6 +25,7 @@ namespace Joserbala.DialogueSystem
 
             foreach (string fragment in fragments)
             {
+                Debug.Log("Inside DialogueManager..." + fragment);
                 sentences.Enqueue(fragment);
             }
 
