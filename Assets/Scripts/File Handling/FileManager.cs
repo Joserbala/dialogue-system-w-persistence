@@ -3,7 +3,6 @@ using System.Collections;
 using System.IO;
 using UnityEngine;
 using Joserbala.Utils;
-using Joserbala.DialogueSystem;
 
 namespace Joserbala.Serialization
 {

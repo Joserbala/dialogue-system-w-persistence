@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Xml;
+﻿using System.Xml;
 using Joserbala.Utils;
 
 namespace Joserbala.DialogueSystem
@@ -40,7 +39,7 @@ namespace Joserbala.DialogueSystem
                 }
             }
 
-            contents = StringUtils.TruncateNullOrEmptyValuesArray(contents);
+            contents = StringUtils.RemoveNullOrEmptyVariablesArray(contents);
 
             return contents;
         }
