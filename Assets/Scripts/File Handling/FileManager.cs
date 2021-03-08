@@ -15,7 +15,7 @@ namespace Joserbala.Serialization
 
         [SerializeField] private int randomFilesNumber = 100;
 
-        public static string DesktopPath { get; private set; }
+        public static string ArchivePath { get; private set; }
         public static string DocumentsPath { get; private set; }
         public static string FilesPath { get; private set; }
         public static string SavePath { get; private set; }
@@ -39,7 +39,7 @@ namespace Joserbala.Serialization
         private void Awake()
         {
             SavePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "JOSERAIGAME");
-            DesktopPath = Path.Combine(SavePath, "Desktop");
+            ArchivePath = Path.Combine(SavePath, "Archive");
             DocumentsPath = Path.Combine(SavePath, "Documents");
             FilesPath = Path.Combine(SavePath, "ArtificialIntelligenceFiles");
 
@@ -66,7 +66,7 @@ namespace Joserbala.Serialization
         private void CreateDirectories()
         {
             Directory.CreateDirectory(SavePath);
-            Directory.CreateDirectory(DesktopPath);
+            Directory.CreateDirectory(ArchivePath);
             Directory.CreateDirectory(DocumentsPath);
             Directory.CreateDirectory(FilesPath);
         }

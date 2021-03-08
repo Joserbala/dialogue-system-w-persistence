@@ -4,9 +4,6 @@
         <content lang="eng">Welcome user. You have been selected for a test.</content>
     </fragment>
     <fragment number="2">
-        <content lang="eng">Do not be afraid, this should be shorted out in about 10 minutes.</content>
-    </fragment>
-    <fragment number="3">
-        <content lang="eng">Let the count begin.</content>
+        <content lang="eng">Do not be afraid, I will guide you through all the process.</content>
     </fragment>
 </dialogue>

@@ -7,7 +7,7 @@ namespace Joserbala.DialogueSystem
     public class DialogueTrigger : MonoBehaviour
     {
 
-        public Dialogue dialogue;
+        public string[] dialogue;
 
         public void TriggerDialogue()
         {

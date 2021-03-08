@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using Joserbala.Utils;
-using System;
 using TMPro;
 
 namespace Joserbala.DialogueSystem
@@ -19,15 +17,15 @@ namespace Joserbala.DialogueSystem
             sentences = new Queue<string>();
         }
 
-        public void StartDialogue(Dialogue dialogue)
+        public void StartDialogue(string[] fragments)
         {
             Debug.Log("Starting conversation");
 
             sentences.Clear();
 
-            foreach (string sentence in sentences)
+            foreach (string fragment in fragments)
             {
-                sentences.Enqueue(sentence);
+                sentences.Enqueue(fragment);
             }
 
             DisplayNextSequence();
