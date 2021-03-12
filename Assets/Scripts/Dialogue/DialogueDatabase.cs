@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Xml;
+﻿using System.Xml;
+using UnityEngine;
 
 namespace Joserbala.DialogueSystem
 {
