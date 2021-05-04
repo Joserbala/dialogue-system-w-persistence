@@ -13,7 +13,7 @@ namespace Joserbala.DialogueSystem
         /// Returns the content nodes of <paramref name="document"/> with the Attribute <paramref name="language"/>.
         /// </summary>
         /// <param name="document">The XML Document to be iterated.</param>
-        /// <param name="language">The language of the dialogue to be returned. Right now English ("eng") is the only one supported.</param>
+        /// <param name="language">The language of the dialogue to be returned.</param>
         /// <returns>The content nodes from <paramref name="document"/> with the Attribute <paramref name="language"/>.</returns>
         public static string[] GetContents(XmlDocument document, Languages language = Languages.English)
         {
