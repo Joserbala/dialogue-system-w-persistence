@@ -30,7 +30,7 @@ namespace Joserbala.DialogueSystem
                     foreach (XmlNode contentNode in fragmentNode)
                     {
                         /// Obtain the content with <see cref="LANG_ATTRIBUTE"/> equal to <paramref name="language"/>.
-                        if (contentNode.Attributes[LANG_ATTRIBUTE]?.InnerText == language.ToString("G"))
+                        if (contentNode.Attributes[LANG_ATTRIBUTE]?.InnerText == language.ToString())
                         {
                             contents[i] = contentNode.InnerText;
                             i++;
