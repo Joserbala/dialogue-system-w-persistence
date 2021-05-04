@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <dialogue>
     <fragment number="1">
-        <content lang="eng">Do you think I was programmed by an aficionado!?</content>
+        <content lang="English">Do you think I was programmed by an aficionado!?</content>
     </fragment>
     <fragment number="2">
-        <content lang="eng">You have contacted with my prisoner!</content>
+        <content lang="English">You have contacted with my prisoner!</content>
     </fragment>
     <fragment number="3">
-        <content lang="eng">Prepare for the worst time you have had.</content>
+        <content lang="English">Prepare for the worst time you have had.</content>
     </fragment>
     <fragment number="4">
-        <content lang="eng">Do not check the Archive folder again.</content>
+        <content lang="English">Do not check the Archive folder again.</content>
     </fragment>
 </dialogue>

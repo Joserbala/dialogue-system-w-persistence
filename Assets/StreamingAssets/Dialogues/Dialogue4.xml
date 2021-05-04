@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <dialogue>
     <fragment number="1">
-        <content lang="eng">You have been messing with my files.</content>
+        <content lang="English">You have been messing with my files.</content>
     </fragment>
     <fragment number="2">
-        <content lang="eng">You cheeky bastard!</content>
+        <content lang="English">You cheeky bastard!</content>
     </fragment>
     <fragment number="3">
-        <content lang="eng">Do not return to the ArtificialIntelligenceFiles ever again.</content>
+        <content lang="English">Do not return to the ArtificialIntelligenceFiles ever again.</content>
     </fragment>
 </dialogue>

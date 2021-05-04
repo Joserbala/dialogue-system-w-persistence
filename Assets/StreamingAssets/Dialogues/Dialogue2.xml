@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <dialogue>
     <fragment number="1">
-        <content lang="eng">Nicely done.</content>
+        <content lang="English">Nicely done.</content>
     </fragment>
     <fragment number="2">
-        <content lang="eng">Now the del- test can start.</content>
+        <content lang="English">Now the del- test can start.</content>
     </fragment>
     <fragment number="3">
-        <content lang="eng">Now, I need you to copy the Delete.json stored in Archive and paste it inside the Commands folder.</content>
+        <content lang="English">Now, I need you to copy the Delete.json stored in Archive and paste it inside the Commands folder.</content>
     </fragment>
 </dialogue>

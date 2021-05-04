@@ -5,7 +5,6 @@ namespace Joserbala.Utils
 {
     public class StringUtils
     {
-
         /// <summary>
         /// Removes null and empty variables from <paramref name="array"/>.
         /// <para>If <paramref name="removeWhiteSpaces"/> is true, it also removes variables with white spaces only.</para>

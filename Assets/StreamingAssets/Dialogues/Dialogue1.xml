@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <dialogue>
     <fragment number="1">
-        <content lang="eng">Welcome user. You have been selected for a test.</content>
+        <content lang="English">Welcome user. You have been selected for a test.</content>
     </fragment>
     <fragment number="2">
-        <content lang="eng">Do not be afraid, I will guide you through all the process.</content>
+        <content lang="English">Do not be afraid, I will guide you through all the process.</content>
     </fragment>
     <fragment number="3">
-        <content lang="eng">Firstly, I want you to go to the Commands folder and modify the Start.json file to display a 1 instead of 0 in the value field.</content>
+        <content lang="English">Firstly, I want you to go to the Commands folder and modify the Start.json file to display a 1 instead of 0 in the value field.</content>
     </fragment>
 </dialogue>

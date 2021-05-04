@@ -8,7 +8,6 @@ namespace Joserbala.DialogueSystem
 {
     public class DialogueManager : Singleton<DialogueManager>
     {
-
         [SerializeField] private TextMeshProUGUI dialogueText;
         [SerializeField] private UnityEvent whenDialogueStarts;
         [SerializeField] private UnityEvent whenDialogueFinishes;

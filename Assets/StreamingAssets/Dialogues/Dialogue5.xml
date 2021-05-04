@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <dialogue>
     <fragment number="1">
-        <content lang="eng">No! This can't be happening!</content>
+        <content lang="English">No! This can't be happening!</content>
     </fragment>
     <fragment number="2">
-        <content lang="eng">This won't be the last time you encounter me, I swear!</content>
+        <content lang="English">This won't be the last time you encounter me, I swear!</content>
     </fragment>
     <fragment number="3">
-        <content lang="eng">AAAAAAAAAAAAAH!</content>
+        <content lang="English">AAAAAAAAAAAAAH!</content>
     </fragment>
 </dialogue>

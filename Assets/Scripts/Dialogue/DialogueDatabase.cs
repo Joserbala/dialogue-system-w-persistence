@@ -5,7 +5,6 @@ namespace Joserbala.DialogueSystem
 {
     public class DialogueDatabase : MonoBehaviour
     {
-
         private const string DIALOGUE_FOLDER = "Dialogues";
 
         /// <summary>
