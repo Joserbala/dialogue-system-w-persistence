@@ -1,12 +1,11 @@
 ﻿using System.IO;
-using System.Xml;
 using UnityEngine;
 using Joserbala.Utils;
 using Joserbala.Data;
 
 namespace Joserbala.Serialization
 {
-    public class SerializerManager : Singleton<SerializerManager> // TODO: remove unused methods
+    public class SerializerManager : Singleton<SerializerManager>
     {
 
         #region BINARY
@@ -18,10 +17,9 @@ namespace Joserbala.Serialization
         /// <param name="content">The content that will be stored in <paramref name="path"/>.</param>
         public void WriteBinary(string path, string content)
         {
-            using (BinaryWriter writer = new BinaryWriter(File.Open(path, FileMode.Create)))
-            {
-                writer.Write(content);
-            }
+            using var writer = new BinaryWriter(File.Open(path, FileMode.Create));
+
+            writer.Write(content);
         }
 
         #endregion

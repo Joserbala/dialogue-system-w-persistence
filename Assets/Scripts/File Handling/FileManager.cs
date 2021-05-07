@@ -94,12 +94,11 @@ namespace Joserbala.Serialization
 
         public void Write(string path, string text)
         {
-            using (var writer = new StreamWriter(path, false))
-            {
-                writer.WriteLine(text);
+            using var writer = new StreamWriter(path, false);
 
-                writer.Close();
-            }
+            writer.WriteLine(text);
+
+            writer.Close();
         }
 
         #endregion
