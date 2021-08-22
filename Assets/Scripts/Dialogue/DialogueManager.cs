@@ -1,55 +1,52 @@
 ﻿using System.Collections.Generic;
-using UnityEngine;
 using Joserbala.Utils;
 using TMPro;
+using UnityEngine;
 using UnityEngine.Events;
 
 namespace Joserbala.DialogueSystem
 {
-    public class DialogueManager : Singleton<DialogueManager>
-    {
-        [SerializeField] private TextMeshProUGUI dialogueText;
-        [SerializeField] private UnityEvent whenDialogueStarts;
-        [SerializeField] private UnityEvent whenDialogueFinishes;
+	public class DialogueManager : Singleton<DialogueManager>
+	{
+		[SerializeField] private TextMeshProUGUI dialogueText;
+		[SerializeField] private UnityEvent whenDialogueStarts;
+		[SerializeField] private UnityEvent whenDialogueFinishes;
 
-        private Queue<string> sentences;
+		private Queue<string> sentences;
 
-        private void Start()
-        {
-            sentences = new Queue<string>();
-        }
+		private void Start()
+		{
+			sentences = new Queue<string>();
+		}
 
-        public void StartDialogue(string[] fragments)
-        {
-            Debug.Log("Starting conversation");
-            whenDialogueStarts?.Invoke();
+		public void StartDialogue(string[] fragments)
+		{
+			whenDialogueStarts?.Invoke();
 
-            sentences.Clear();
+			sentences.Clear();
 
-            foreach (string fragment in fragments)
-            {
-                Debug.Log("Inside DialogueManager: " + fragment);
-                sentences.Enqueue(fragment);
-            }
+			foreach (string fragment in fragments)
+			{
+				sentences.Enqueue(fragment);
+			}
 
-            DisplayNextSequence();
-        }
+			DisplayNextSequence();
+		}
 
-        public void DisplayNextSequence()
-        {
-            if (sentences.Count < 2)
-            {
-                EndDialogue();
-            }
+		public void DisplayNextSequence()
+		{
+			if (sentences.Count < 2)
+			{
+				EndDialogue();
+			}
 
-            string sentence = sentences.Dequeue();
-            dialogueText.text = sentence;
-        }
+			string sentence = sentences.Dequeue();
+			dialogueText.text = sentence;
+		}
 
-        private void EndDialogue()
-        {
-            Debug.Log("End of conversation.");
-            whenDialogueFinishes?.Invoke();
-        }
-    }
+		private void EndDialogue()
+		{
+			whenDialogueFinishes?.Invoke();
+		}
+	}
 }
