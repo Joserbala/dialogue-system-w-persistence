@@ -6,15 +6,13 @@ namespace Joserbala.DialogueSystem
 		private const string XML_EXTENSION = ".xml";
 
 		/// <summary>
-		/// Obtain the dialogue number <paramref name="currentDialogue"/>.
+		/// Obtain the dialogue number <paramref name="dialogueNumber"/>.
 		/// </summary>
-		/// <param name="currentDialogue">The number of the dialogue.</param>
+		/// <param name="dialogueNumber">The number of the dialogue.</param>
 		/// <returns></returns>
-		public static string[] ObtainNextDialogue(int currentDialogue)
+		public static string[] ObtainDialogue(int dialogueNumber)
 		{
-			currentDialogue++;
-
-			var xmlDoc = DialogueDatabase.Load(DIALOGUE_FILE + currentDialogue + XML_EXTENSION);
+			var xmlDoc = DialogueDatabase.Load(DIALOGUE_FILE + dialogueNumber + XML_EXTENSION);
 
 			return DialogueXMLNavigator.GetContents(xmlDoc);
 		}

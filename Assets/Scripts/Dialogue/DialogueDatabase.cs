@@ -16,6 +16,7 @@ namespace Joserbala.DialogueSystem
 		{
 			var xmlDoc = new XmlDocument();
 			xmlDoc.Load(System.IO.Path.Combine(Application.streamingAssetsPath, DIALOGUE_FOLDER, dialogueName));
+
 			return xmlDoc;
 		}
 	}

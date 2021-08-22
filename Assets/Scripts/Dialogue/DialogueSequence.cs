@@ -8,7 +8,7 @@ namespace Joserbala.DialogueSystem
 
 		public void DialogueStart()
 		{
-			var dialogues = DialogueRepository.ObtainNextDialogue(currentDialogue);
+			var dialogues = DialogueRepository.ObtainDialogue(currentDialogue);
 			DialogueManager.Instance.StartDialogue(dialogues);
 
 			currentDialogue++;
