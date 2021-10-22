@@ -2,11 +2,14 @@
 <dialogue>
     <fragment number="1">
         <content lang="English">No! This can't be happening!</content>
+        <content lang="Spanish">Esto no puede estar pasando!</content>
     </fragment>
     <fragment number="2">
         <content lang="English">This won't be the last time you encounter me, I swear!</content>
+        <content lang="Spanish">lo juro!</content>
     </fragment>
     <fragment number="3">
         <content lang="English">AAAAAAAAAAAAAH!</content>
+        <content lang="Spanish">AAAAAAAAAAAAAH!</content>
     </fragment>
 </dialogue>

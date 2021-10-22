@@ -2,11 +2,14 @@
 <dialogue>
     <fragment number="1">
         <content lang="English">You have been messing with my files.</content>
+        <content lang="Spanish">Archovs.</content>
     </fragment>
     <fragment number="2">
         <content lang="English">You cheeky bastard!</content>
+        <content lang="Spanish">Bastardo!</content>
     </fragment>
     <fragment number="3">
         <content lang="English">Do not return to the ArtificialIntelligenceFiles ever again.</content>
+        <content lang="Spanish">Artillesd.</content>
     </fragment>
 </dialogue>

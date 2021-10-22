@@ -2,14 +2,18 @@
 <dialogue>
     <fragment number="1">
         <content lang="English">Do you think I was programmed by an aficionado!?</content>
+        <content lang="Spanish">programado por aficionado</content>
     </fragment>
     <fragment number="2">
         <content lang="English">You have contacted with my prisoner!</content>
+        <content lang="Spanish">Prisionero</content>
     </fragment>
     <fragment number="3">
         <content lang="English">Prepare for the worst time you have had.</content>
+        <content lang="Spanish">Peor momento.</content>
     </fragment>
     <fragment number="4">
         <content lang="English">Do not check the Archive folder again.</content>
+        <content lang="Spanish">Archivos.</content>
     </fragment>
 </dialogue>

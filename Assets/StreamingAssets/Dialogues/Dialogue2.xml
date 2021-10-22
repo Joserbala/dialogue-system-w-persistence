@@ -2,11 +2,14 @@
 <dialogue>
     <fragment number="1">
         <content lang="English">Nicely done.</content>
+        <content lang="Spanish">Bien.</content>
     </fragment>
     <fragment number="2">
         <content lang="English">Now the del- test can start.</content>
+        <content lang="Spanish">Comenzar.</content>
     </fragment>
     <fragment number="3">
         <content lang="English">Now, I need you to copy the Delete.json stored in Archive and paste it inside the Commands folder.</content>
+        <content lang="Spanish">Borrar.</content>
     </fragment>
 </dialogue>
